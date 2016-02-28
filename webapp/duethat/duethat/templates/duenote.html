@@ -95,8 +95,8 @@
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                 <!-- insert display code here -->
                 <div id="duenote-objs" class="row">
-                <div id="scheduling" class="col-sm-6">
-                    <h1>Scheduled<img style="width:30px;height:30px;" src="http://icons.iconarchive.com/icons/marcus-roberto/google-play/128/Google-Calendar-icon.png"/></h1>
+                <div id="scheduling" class="col-lg-6">
+                    <h1><img style="padding-right:10px;width:30px;height:30px;" src="http://icons.iconarchive.com/icons/marcus-roberto/google-play/128/Google-Calendar-icon.png"/>Scheduled</h1>
                     <ul class="list-group">
                     {% for s in scheduling %}
                     <li class="list-group-item" style="color:rgb(119,136,153)">{{s.query}}<br>
@@ -108,8 +108,8 @@
                     {% endfor %}
                     </ul>
                 </div>
-                <div id="todo" class="col-sm-6">
-                    <h1>Added to To-Dos<img style="width:30px;height:30px;" src="https://cdn2.iconfinder.com/data/icons/metro-ui-dock/512/Google_Tasks.png" /></h1>
+                <div id="todo" class="col-lg-6">
+                    <h1><img style="padding-right:10px;width:30px;height:30px;" src="https://cdn2.iconfinder.com/data/icons/metro-ui-dock/512/Google_Tasks.png" />Added to To-Dos</h1>
                     <ul class="list-group">
                     {% for t in todo %}
                     <li class="list-group-item" style="color:rgb(119,136,153)">{{t.query}}<br>

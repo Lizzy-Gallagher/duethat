@@ -72,10 +72,9 @@ class GoogleCalendar(object):
     # Creates an event ready for Google Calendar
     def _create_event(self, cal_item):
         if cal_item.start_time == "":
-            cal_item.start_time = '2016-2-29T12:00:00.000Z'
+            cal_item.start_time = '2016-2-29T17:00:00.000Z'
 
         cal_item.start_time = parse(cal_item.start_time).isoformat()
-
         end_time = parse(cal_item.start_time) + datetime.timedelta(hours=1)
 
         if cal_item.location == "":

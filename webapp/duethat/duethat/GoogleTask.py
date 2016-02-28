@@ -7,6 +7,9 @@ import oauth2client
 from oauth2client import client
 from oauth2client import tools
 
+import datetime
+from dateutil.parser import parse
+
 from TaskItem import TaskItem
 
 try:
@@ -62,6 +65,9 @@ class GoogleTask(object):
     def add_task(self, task):
         if task.due_date == "":
             task.due_date = '2016-2-29T12:00:00.000Z'
+
+        task.due_date = parse(task.due_date).isoformat() + 'Z'
+
         if task.location == "":
             task = {
                 'title': task.create_title(),

@@ -22,7 +22,7 @@ except ImportError:
 # at ./.credentials/drive-python-quickstart.json
 SCOPES = 'https://www.googleapis.com/auth/drive.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
-APPLICATION_NAME = 'Drive API Python Quickstart'
+APPLICATION_NAME = 'Due That'
 
 def get_credentials():
 	"""Gets valid user credentials from storage.
@@ -37,7 +37,7 @@ def get_credentials():
 	if not os.path.exists(credential_dir):
 		os.makedirs(credential_dir)
 	credential_path = os.path.join(credential_dir,
-								   'drive-python-quickstart.json')
+								   'due-that.json')
 
 	store = oauth2client.file.Storage(credential_path)
 	credentials = store.get()

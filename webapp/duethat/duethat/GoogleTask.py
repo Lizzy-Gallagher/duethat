@@ -60,13 +60,25 @@ class GoogleTask(object):
         return service
 
     def add_task(self, task):
-        task = {
-            'title': task.create_title(),
-            'notes': task.location,
-            'due': task.due_date
-        }
+        if task.due_date == "":
+            task.due_date = '2016-2-29T12:00:00.000Z'
+        if task.location == "":
+            task = {
+                'title': task.create_title(),
+                'notes': task.query,
+                'due': task.due_date
+            }
+            self.service.tasks().insert(tasklist='@default', body=task).execute()
+        else:
+            task = {
+                'title': task.create_title(),
+                'notes': task.query,
+                'due': task.due_date
+            }
+            self.service.tasks().insert(tasklist='@default', body=task).execute()
+        # print (task.items())
 
-        self.service.tasks().insert(tasklist='@default', body=task).execute()
+
 
     # Depreciated, kept for posterity
     def _list_task_lists(self):

@@ -94,7 +94,7 @@
             <h2>Select a document:</h2>
             <div class="list-group">
             {% for my_file in filenames %}
-            <a href="javascript: selectDoc({{loop.index0}})" class="list-group-item active">{{ my_file }}</a></li>
+            <a href="javascript: selectDoc({{loop.index0}})" class="list-group-item">{{ my_file }}</a></li>
             {% endfor %}
             </ul>
             </div>

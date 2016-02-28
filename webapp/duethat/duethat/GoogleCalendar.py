@@ -10,6 +10,9 @@ from oauth2client import tools
 import datetime
 from CalItem import CalItem
 
+from dateutil.parser import parse
+
+
 try:
     import argparse
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
@@ -68,9 +71,30 @@ class GoogleCalendar(object):
 
     # Creates an event ready for Google Calendar
     def _create_event(self, cal_item):
-        end_time = "2016-02-28T11:00:00-00:00"
+        if cal_item.start_time == "":
+            cal_item.start_time = '2016-2-29T12:00:00.000Z'
 
-        event = {
+        cal_item.start_time = parse(cal_item.start_time).isoformat()
+
+        end_time = parse(cal_item.start_time) + datetime.timedelta(hours=1)
+
+        if cal_item.location == "":
+            return {
+              'summary': cal_item.create_description(),
+              'description': cal_item.create_description(),
+              'start': {
+                'dateTime': cal_item.start_time,
+                'timeZone': 'America/Los_Angeles',
+              },
+              'end': {
+                'dateTime': end_time.isoformat(),
+                'timeZone': 'America/Los_Angeles',
+              },
+              'reminders': {
+                'useDefault': True
+              }
+            }
+        return {
           'summary': cal_item.create_description(),
           'location': cal_item.location,
           'description': cal_item.create_description(),
@@ -79,14 +103,13 @@ class GoogleCalendar(object):
             'timeZone': 'America/Los_Angeles',
           },
           'end': {
-            'dateTime': end_time,
+            'dateTime': end_time.isoformat(),
             'timeZone': 'America/Los_Angeles',
           },
           'reminders': {
             'useDefault': True
           }
         }
-        return event
 
 # Sample Usage of this Object
 def sample():

@@ -5,11 +5,15 @@ parseJSON.py parses the LUIS AI JSON response.
 from CalItem import CalItem
 from TaskItem import TaskItem
 import json
+import datetime
+
 
 def parseJSON(json):
 	scheduling = []
 	todo = []
 	for j in json:
+		print (j.items())
+
 		query = j["query"]
 		intent = j["intents"][0]["intent"]
 		action = ""
@@ -24,9 +28,10 @@ def parseJSON(json):
 				actionTarget = ent["entity"]
 			elif enttype == "Place":
 				location = ent["entity"]
-			# else:
+			else:
 				# not all entities have date
-				# startTime = ent["resolution"]["date"]
+				if 'date' in ent["resolution"].keys():
+					startTime = ent["resolution"]["date"].replace('XXXX', '2016')
 
 		if intent == "Schedule":
 			scheduling.append(CalItem(query, action,actionTarget,location,startTime))

@@ -24,7 +24,8 @@ SCOPES = 'https://www.googleapis.com/auth/drive.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Due That'
 
-def get_credentials():
+# Do not use. Called by get_service()
+def _get_credentials():
 	"""Gets valid user credentials from storage.
 
     If nothing has been stored, or if the stored credentials are invalid,
@@ -33,14 +34,15 @@ def get_credentials():
     Returns:
         Credentials, the obtained credential.
     """
-	credential_dir = '.credentials'
+	home_dir = os.path.expanduser('~')
+	credential_dir = os.path.join(home_dir, '.credentials')
 	if not os.path.exists(credential_dir):
 		os.makedirs(credential_dir)
-	credential_path = os.path.join(credential_dir,
-								   'due-that.json')
+	credential_path = os.path.join(credential_dir, 'drive-python-quickstart.json')
 
 	store = oauth2client.file.Storage(credential_path)
 	credentials = store.get()
+
 	if not credentials or credentials.invalid:
 		flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
 		flow.user_agent = APPLICATION_NAME
@@ -51,7 +53,8 @@ def get_credentials():
 		print('Storing credentials to ' + credential_path)
 	return credentials
 
-def download_file(filename, item, service):
+# do not use, called by get_text_from_file
+def _download_file(filename, item, service):
 	"""Downloads item to filename."""
 	id = item['id']
 	request = service.files().export_media(fileId=id,
@@ -97,22 +100,15 @@ def list_files(service):
 
 	return result
 
-def main():
-	"""Shows basic usage of the Google Drive API.
-
-    Creates a Google Drive API service object and outputs the names and IDs
-    for up to 10 files.
-    """
-	credentials = get_credentials()
+def get_service():
+	credentials = _get_credentials()
 	http = credentials.authorize(httplib2.Http())
 	service = discovery.build('drive', 'v3', http=http)
+	return service
 
-	available_files = list_files(service)
-	last_item = available_files[0]
-	filename = last_item['id'] + '.pdf'
-	download_file(filename, last_item, service)
+def get_text_from_file(file, service):
+	filename = file['id'] + '.pdf'
+	_download_file(filename, file, service)
 	text = textract.process(filename)
+	os.remove(filename)
 	return text
-
-if __name__ == '__main__':
-	print (main()) # returns the text from the first file

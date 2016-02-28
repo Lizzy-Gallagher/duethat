@@ -1,18 +1,21 @@
 from duethat import app
 from flask import render_template, request
 
-import google_doc as gdoc
+from GoogleCalendar import GoogleCalendar
+from GoogleTask import GoogleTask
+from GoogleDoc import GoogleDoc
+import cal
 
 # homepage, landing page
 @app.route('/')
 def index():
-	service = gdoc.get_service()
-	list_of_readable_files = gdoc.list_files(service) # array of file dictionaries
+	documents = GoogleDoc()
+	list_of_readable_files = documents.get_list_of_readable_files()
 
-	sample_file = list_of_readable_files[0]
+	filenames = []
 
-	text = gdoc.get_text_from_file(sample_file, service)
-	print (text)
+	for file in list_of_readable_files:
+		filenames.append(file['name'])
 
 	return render_template('index.html')
 

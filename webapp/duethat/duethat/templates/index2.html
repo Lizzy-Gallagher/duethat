@@ -93,8 +93,8 @@
         <div class="container">
             <p>Select a document:</p>
             <ul>
-            {% for file in filenames %}
-            <li><a href="javascript: selectDoc({{loop.index0}}">file.name</a></li>
+            {% for my_file in filenames %}
+            <li><a href="javascript: selectDoc({{loop.index0}})">{{ my_file }}</a></li>
             {% endfor %}
             <ul>
         </div>
@@ -253,7 +253,7 @@
         </div>
     </section-->
 
-    
+
 
     <section id="contact">
         <div class="container">
@@ -287,6 +287,9 @@
             </div>
         </div>
     </aside>
+
+
+    <script src="../static/index.js"></script>
 
     <!-- jQuery -->
     <script src="../static/js/jquery.js"></script>

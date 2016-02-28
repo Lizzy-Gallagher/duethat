@@ -95,10 +95,8 @@
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                 <!-- insert display code here -->
                 <div id="duenote-objs">
-                {% for text in textSnippets %}
-                <script>
-                classify({{text}})
-                </script>
+                {% for dat in data %}
+                    <p>{{dat}}</p>
                 {% endfor %}
                 </div>
                 </div>
@@ -259,7 +257,7 @@
         </div>
     </section-->
 
-    
+
 
     <section id="contact">
         <div class="container">
@@ -293,6 +291,8 @@
             </div>
         </div>
     </aside>
+
+    <script src="../static/index.js"></script>
 
     <!-- jQuery -->
     <script src="../static/js/jquery.js"></script>

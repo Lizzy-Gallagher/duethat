@@ -40,7 +40,7 @@ var showResults = function(data) {
 		intent_div.innerHTML = "Type: Unknown.";
 	}
 	result_box.appendChild(intent_div);
-	
+
 	var entities = data["entities"];
 	for (var i = 0; i < entities.length; i++) {
 		var newdiv = document.createElement("div");
@@ -51,8 +51,8 @@ var showResults = function(data) {
 
 }
 
-var clear = function(node-name) {
-	var node = document.getElementById(node-name);
+var clear = function(node_name) {
+	var node = document.getElementById(node_name);
 	while (node.firstChild) {
 	    node.removeChild(node.firstChild);
 	}

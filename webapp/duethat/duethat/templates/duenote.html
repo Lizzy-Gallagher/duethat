@@ -77,26 +77,32 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <header id="get-started">
+    <!--header id="get-started">
         <div class="header-content">
             <div class="header-content-inner">
                 <h1>Due That</h1>
                 <hr>
                 <p>Seamlessly integrate your class notes and to-do list</p>
-                <!-- put link to initiate load -->
-                <a href="#main" class="btn btn-primary btn-xl page-scroll">Get Started</a>
+                <put link to initiate load>
+                <a href="#" class="btn btn-primary btn-xl page-scroll">Get Started</a>
             </div>
         </div>
-    </header>
+    </header-->
 
     <section id="main">
         <div class="container">
-            <p>Select a document:</p>
-            <ul>
-            {% for file in filenames %}
-            <li><a href="javascript: selectDoc({{loop.index0}}">file.name</a></li>
-            {% endfor %}
-            <ul>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                <!-- insert display code here -->
+                <div id="duenote-objs">
+                {% for text in textSnippets %}
+                <script>
+                classify({{text}})
+                </script>
+                {% endfor %}
+                </div>
+                </div>
+            </div>
         </div>
     </section>
 

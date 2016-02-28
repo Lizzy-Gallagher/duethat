@@ -8,13 +8,37 @@ var classify = function() {
 	var full_url = base_url + text;
 	$.getJSON(full_url, function(data) {
 		// do something
-		readJSON(data);
-		console.log("finished");
+		showResults(data)
 	});
 }
 
-var readJSON = function(data) {
-	var json = JSON.parse(data);
-	console.log(json["intents"][0]["intent"]);
-	console.log(json["entities"][0]["entity"]);
+var showResults = function(data) {
+	var result_box = document.getElementById("result-box");
+
+	var intent = data["intents"][0]["intent"];
+	var intent_div = document.createElement("div");
+	if (intent == "Schedule") {
+		intent_div.innerHTML = "Type: Scheduling.";
+	} else if (intent == "To Do") {
+		intent_div.innerHTML = "Type: To Do.";
+	} else {
+		intent_div.innerHTML = "Type: Unknown.";
+	}
+	result_box.appendChild(intent_div);
+	
+	var entities = data["entities"];
+	for (var i = 0; i < entities.length; i++) {
+		var newdiv = document.createElement("div");
+		newdiv.id = "entity-"+i;
+		newdiv.innerHTML = entities[i]["entity"];
+		result_box.appendChild(newdiv);
+	}
+
+}
+
+var clear = function() {
+	var result_box = document.getElementById("result-box");
+	while (result_box.firstChild) {
+	    result_box.removeChild(result_box.firstChild);
+	}
 }

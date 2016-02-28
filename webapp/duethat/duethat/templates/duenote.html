@@ -97,26 +97,26 @@
                 <div id="duenote-objs" class="row">
                 <div id="scheduling" class="col-sm-6">
                     <h1>Scheduled</h1>
-                    <ul class="list-group" style="opacity:40">
+                    <ul class="list-group">
                     {% for s in scheduling %}
-                    <li class="list-group-item">{{s.query}}<br>
-                    <span class="label label-default label-pill pull-xs-right">{{s.action}}</span>
-                    <span class="label label-default label-pill pull-xs-right">{{s.actionTarget}}</span>
-                    <span class="label label-default label-pill pull-xs-right">{{s.location}}</span>
-                    <span class="label label-default label-pill pull-xs-right">{{s.startTime}}</span>
+                    <li class="list-group-item" style="color:rgb(119,136,153)">{{s.query}}<br>
+                    {% if s.action != "" %}<span class="label label-default label-pill pull-xs-right">{{s.action}}</span>{% endif %}
+                    {% if s.actionTarget != "" %}<span class="label label-default label-pill pull-xs-right">{{s.actionTarget}}</span>{% endif %}
+                    {% if s.location != "" %}<span class="label label-default label-pill pull-xs-right">{{s.location}}</span>{% endif %}
+                    {% if s.startTime != "" %}<span class="label label-default label-pill pull-xs-right">{{s.startTime}}</span>{% endif %}
                     </li>
                     {% endfor %} 
                     </ul>
                 </div>
                 <div id="todo" class="col-sm-6">
                     <h1>Added to To Do's</h1>
-                    <ul class="list-group" style="opacity:40">
+                    <ul class="list-group">
                     {% for t in todo %}
-                    <li class="list-group-item">{{t.query}}<br>
-                    <span class="label label-default label-pill pull-xs-right">{{t.action}}</span>
-                    <span class="label label-default label-pill pull-xs-right">{{t.actionTarget}}</span>
-                    <span class="label label-default label-pill pull-xs-right">{{t.location}}</span>
-                    <span class="label label-default label-pill pull-xs-right">{{t.startTime}}</span>
+                    <li class="list-group-item" style="color:rgb(119,136,153)">{{t.query}}<br>
+                    {% if t.action != "" %}<span class="label label-default label-pill pull-xs-right">{{t.action}}</span>{% endif %}
+                    {% if t.actionTarget != "" %}<span class="label label-default label-pill pull-xs-right">{{t.actionTarget}}</span>{% endif %}
+                    {% if t.location != "" %}<span class="label label-default label-pill pull-xs-right">{{t.location}}</span>{% endif %}
+                    {% if t.startTime != "" %}<span class="label label-default label-pill pull-xs-right">{{t.startTime}}</span>{% endif %}
                     </li>
                     {% endfor %} 
                     </ul>

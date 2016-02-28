@@ -1,5 +1,6 @@
 class TaskItem:
-	def __init__(self, action, action_target, location, due_date):
+	def __init__(self, query, action, action_target, location, due_date):
+		self.query = query 
 		self.action = action
 		self.action_target = action_target
 		self.location = location

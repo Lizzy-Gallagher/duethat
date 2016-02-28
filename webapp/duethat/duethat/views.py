@@ -4,6 +4,7 @@ from flask import render_template, request
 import search
 import json
 from classify import classify
+from parseJSON import parseJSON
 
 from GoogleCalendar import GoogleCalendar
 from GoogleTask import GoogleTask
@@ -39,6 +40,6 @@ def duenote(index):
 		labels = classify(text)
 		data.append(labels)
 
-	print data
+	scheduling,todo = parseJSON(data)
 
-	return render_template('duenote.html', data=data)
+	return render_template('duenote.html', scheduling=scheduling,todo=todo)

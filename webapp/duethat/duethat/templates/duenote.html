@@ -94,10 +94,21 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                 <!-- insert display code here -->
-                <div id="duenote-objs">
-                {% for dat in data %}
-                    <p>{{dat}}</p>
-                {% endfor %}
+                <div id="duenote-objs" class="row">
+                <div class="col-sm-6">
+                <ul>
+                {% for s in scheduling %}
+                <li>{{s.query}}</li>
+                {% endfor %} 
+                </ul>
+                </div>
+                <div class="col-sm-6">
+                <ul>
+                {% for t in todo %}
+                <li>{{t.query}}</li>
+                {% endfor %} 
+                </ul>
+                </div>
                 </div>
                 </div>
             </div>

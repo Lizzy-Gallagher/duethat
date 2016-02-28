@@ -19,18 +19,18 @@ def parseJSON(json):
 		for ent in j["entities"]:
 			enttype = ent["type"]
 			if enttype == "Action":
-				action = enttype["entity"] 
+				action = ent["entity"]
 			elif enttype == "ActionTarget":
-				actionTarget = enttype["entity"]
+				actionTarget = ent["entity"]
 			elif enttype == "Place":
-				location = enttype["entity"]
-			else:
+				location = ent["entity"]
+			# else:
 				# not all entities have date
-				startTime = enttype["resolution"]["date"]
+				# startTime = ent["resolution"]["date"]
 
 		if intent == "Schedule":
 			scheduling.append(CalItem(query, action,actionTarget,location,startTime))
 		else:
 			todo.append(TaskItem(query, action,actionTarget,location,startTime))
-		
+
 	return (scheduling,todo)
